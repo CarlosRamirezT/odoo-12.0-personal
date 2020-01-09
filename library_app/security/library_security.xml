@@ -27,4 +27,23 @@
             eval="[(4, ref('base.user_root')),
             (4, ref('base.user_admin'))]"/>
     </record>
+    <!-- TODO ADD COMMENTS - USE PAGE 91 OF ODOO 12 DEVELOPMENT ESSENTIALS  4TH EDITION -->
+    <!--
+        - <data noupdate="1" indicates that these records will be created on module installation
+        and not on module update. The idea behind this is to allow this rules to be customize
+        later on without the risk of beign overwritten by module upgrade. During development this
+        makes no sense since we need to be constantly updating our modules for this purpose we
+        might want so set the noupdate to 0 and then set it back to 1 when we are happy with the
+        results of the data file.
+    -->
+    <data noupdate="1">
+        <record id="book_user_rule" model="ir.rule">
+            <field name="name">Library Book User Access</field>
+            <field name="model_id" ref="model_library_book"/>
+            <field name="domain_force">
+                [('active','=',True)]
+            </field>
+            <field name="groups" eval="[(4, ref('module_library_group_user'))]"/>
+        </record>
+    </data>
 </odoo>

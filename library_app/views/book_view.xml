@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <odoo>
+    <!-- form view for library.book model -->
     <record id="view_form_book" model="ir.ui.view">
         <field name="name">Book Form</field>
         <field name="model">library.book</field>
@@ -25,6 +26,38 @@
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <!-- tree view for library.book model -->
+    <record id="tree_view_book" model="ir.ui.view">
+        <field name="name">Book List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="author_ids" widget="many2many_tags"/>
+                <field name="publisher_id"/>
+                <field name="date_published"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- adding a search view -->
+    <record id="search_view_book" model="ir.ui.view">
+        <field name="name">Book Search</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- filter 1 -->
+                <filter name="filter_inactive"
+                        string="Inactive"
+                        domain="[('active','=',False)]"/>
+                <!-- filter 2 -->
+                <filter name="filter_active"
+                        string="Active"
+                        domain="[('active','=',False)]"/>
+            </search>
         </field>
     </record>
 </odoo>

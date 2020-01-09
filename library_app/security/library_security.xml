@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--
+        creating a new record into the ir.model.category(security groups model)
+        to define a category for library_app
+    -->
+    <record id="module_library_category" model="ir.module.category">
+        <field name="name">Library</field>
+    </record>
+
+    <!--
+        adding two security groups to module_library_category category
+    -->
+    <!-- user group -->
+    <record id="module_library_group_user" model="res.groups">
+        <field name="name">User</field> <!--group title field-->
+        <field name="category_id" ref="module_library_category"/> <!-- related app field linking to the category created before using ref -->
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/> <!-- one to many relation fields, contains a list of groups that will also aplply to users belonging to this group -->
+    </record>
+    <!-- Library Manager Group -->
+    <record id="module_library_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_library_category"/>
+        <field name="implied_ids" eval="[(4, ref('module_library_group_user'))]"/>
+        <!-- setting the internal root users app manager automatically -->
+        <field name="users"
+            eval="[(4, ref('base.user_root')),
+            (4, ref('base.user_admin'))]"/>
+    </record>
+</odoo>

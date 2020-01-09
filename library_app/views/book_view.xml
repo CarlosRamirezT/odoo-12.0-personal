@@ -6,7 +6,8 @@
         <field name="arch" type="xml">
             <form string="Book">
                 <header>
-                    <!-- action buttons will be placed here in a uncertain future -->
+                    <!-- buttons can also have a class attribute to implement css style -->
+                    <button name="button_check_isbn" type="object" string="Check ISBN"/>
                 </header>
                 <sheet>
                     <group>

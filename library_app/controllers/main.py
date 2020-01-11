@@ -12,7 +12,7 @@ class Books(http.Controller):
         # access the enviroment and get a recordset with all active books
         Book = http.request.env['library.book']
         books = Book.search([])
-        # process the library_app.index_template and generate the output hmtl
+        # process the library_app.index_template and generate the output html
         return http.request.render(
             'library_app.book_list_template', {'books': books}
         )

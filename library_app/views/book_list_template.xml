@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--
+        template element is used to declared a QWeb template,
+        it is a shortcut for ir.ui.view which is the base model
+        where templates are stored
+     -->
+    <template id="book_list_template" name="Book List">
+        <div class="container">
+            <h1>Books</h1>
+            <t t-foreach="books" t-as="book">
+                <div class="row">
+                    <span t-field="book.name"/>
+                    <span t-field="book.date_published"/>
+                    <span t-field="book.publisher_id"/>
+                </div>
+            </t>
+        </div>
+    </template>
+</odoo>

@@ -16,7 +16,7 @@ class Book(models.Model):
             check = 10 - remain if remain != 0 else 0
             return digits[-1] == check
 
-    @api.multi
+    @api.multi # api.multi is the default decorator for model methods, so it is possible to skip it
     def button_check_isbn(self):
         for book in self:
             if not book.isbn:

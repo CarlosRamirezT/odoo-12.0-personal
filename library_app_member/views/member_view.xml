@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- form view for library.member model -->
+    <record id="view_form_member" model="ir.ui.view">
+        <field name="name">Member Form</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <form string="Member">
+                <sheet>
+                    <group name="group_top">
+                        <group name="group_left">
+                            <field name="image_medium" widget="image"/>
+                        </group>
+                        <group name="group_right">
+                            <field name="name"/>
+                            <field name="card_number"/>
+                            <field name="email"/>
+                            <field name="mobile"/>
+                        </group>
+                    </group>
+                    <group name="group_down">
+                        <!-- fields related to the mail mixin fields -->
+                        <div class="oe_chatter">
+                            <field name="message_follower_ids" widget="mail_followers"/>
+                            <field name="activity_ids" widget="mail_activity"/>
+                            <field name="message_ids" widget="mail_thread"/>
+                        </div>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view for library.book model -->
+    <record id="tree_view_member" model="ir.ui.view">
+        <field name="name">Member List</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="card_number"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

@@ -26,7 +26,14 @@
     """,
 
     'author': "Cadara Software",
-    'depends': ['library_app'],
-    'data': [],
+    'depends': ['library_app', 'mail'],
+    'data': [
+        'views/book_view.xml',
+        'security/library_security.xml',
+        'security/ir.model.access.csv',
+        'views/member_view.xml',
+        'views/library_menu.xml',
+        'views/book_list_template.xml',
+    ],
     'application': False,
 }

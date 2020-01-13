@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- modifying group name -->
+    <!--
+        modifying a record created by another module,
+        if the id exists it is overwritten, if not,
+        it is then created.
+
+        when updating a record it is possible to select certain
+        fields we want to change leaving the rest out of the equation.
+        this does not happen with shortcut elements such as menuitem
+        or act_window
+    -->
+    <record id="library_app.module_library_group_user" model="res.groups">
+        <field name="name">Librarian</field> <!--changing group title field from user to librarian-->
+    </record>
+</odoo>

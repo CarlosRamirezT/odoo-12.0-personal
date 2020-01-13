@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- extending and modifying form view for library.book model -->
+    <record id="view_form_book_extend" model="ir.ui.view">
+        <field name="name">Book: add Is Available? field</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="library_app.view_form_book"/>
+        <field name="arch" type="xml">
+            <field name="isbn" position="after">
+                <field name="is_available" />
+                <!--
+                    other position attribute values:
+
+                    inside (the default): Appends the content inside the selected node, which
+                    should be a container, such as <group> or <page> .
+
+                    after : Adds the content to the parent element, after the selected node.
+
+                    before : Adds the content to the parent element, before the selected node.
+
+                    replace : Replaces the selected node. If used with empty content, it deletes the
+                    element. Since Odoo 10, it also allows you to wrap an element with other markup
+                    by using $0 in the content to represent the element being replaced.
+
+                    attributes : Modifies attribute values for the matched element. The content
+                    should have one or more <attribute name="attr-
+                    name">value<attribute> elements, such as <attribute
+                    name="invisible">True></attribute> . If used with no body, as in
+                    <attribute name="invisible"/> , the attribute is removed from the selected
+                    element.
+                -->
+            </field>
+            <!--
+                using the Xpath syntax the equivalent will be
+            -->
+<!--            <expr="//field[@name='isbn']" position="after">-->
+<!--                <field name="is_available"/>-->
+<!--            </expr>-->
+        </field>
+    </record>
+
+    <!-- extending and modifying the tree view for library.book model -->
+    <record id="tree_view_book" model="ir.ui.view">
+        <field name="name">Book List</field>
+        <field name="model">library.book</field>
+        <field name="inherit_id" ref="library_app.tree_view_book"/>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="is_available"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

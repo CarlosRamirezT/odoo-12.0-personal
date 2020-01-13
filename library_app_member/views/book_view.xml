@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <odoo>
+
     <!-- extending and modifying form view for library.book model -->
     <record id="view_form_book_extend" model="ir.ui.view">
         <field name="name">Book: add Is Available? field</field>
@@ -50,4 +51,5 @@
             </tree>
         </field>
     </record>
+
 </odoo>

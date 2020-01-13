@@ -9,6 +9,5 @@ class BookExtended(Books):
         if kwargs.get('available'):
             Book = http.request.env['library.book']
             books = Book.search([('is_available', '=', True)])
-            # books = Book.search([])
             response.qcontext['books'] = books
         return response

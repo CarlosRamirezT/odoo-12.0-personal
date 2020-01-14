@@ -35,5 +35,8 @@
         'views/library_menu.xml',
         'views/book_list_template.xml',
     ],
+    'demo': [
+        'data/library.member.csv',
+    ],
     'application': False,
 }

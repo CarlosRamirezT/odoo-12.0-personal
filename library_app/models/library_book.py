@@ -4,6 +4,11 @@ from odoo.exceptions import Warning
 class Book(models.Model):
     _name = 'library.book'
     _description = 'Book'
+    _order = 'name, date_published desc'
+    # _rec_name = 'name' # indicates the field used as record description when referenced from related fields, Many2one or Many2many relation
+    # _table = 'library_book # indicates the database table supporting the module which is usually leave to be set automatically by replacying the dots by underscore in model name
+    # _log_access = True # specifies wether the auditory fields should be automatically created (create_uid, create_date)
+    # _auto = False # indicates whether the underlying database table should be created or not, in which case the init() method should be overwritten to create the database model holder table
 
     @api.multi
     def _check_isbn(self):

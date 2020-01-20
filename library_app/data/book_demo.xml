@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- data only recorded on installation(noupdate) -->
+    <data noupdate="1">
+        <!-- demostration data to be loaded -->
+        <!-- contact records -->
+        <record id="res_partner_huxley" model="res.partner">
+            <field name="name">Aldous Huxley</field>
+        </record>
+        <record id="res_partner_carlos" model="res.partner">
+            <field name="name">Carlos Daniel Ramirez</field>
+            <field name="function">Developer</field>
+            <field name="phone">809-578-4730</field>
+            <field name="mobile">829-879-3273</field>
+            <field name="email">carlosdanielrt@gmail.com</field>
+            <field name="website">cadara.epizy.com</field>
+            <field name="x_is_team_work">True</field>
+        </record>
+        <!-- library book records -->
+        <record id="library_book_bnw" model="library.book">
+            <field name="name">Brave New World</field>
+            <field name="author_ids" eval="[(4, ref('res_partner_huxley'))]"/>
+            <field name="date_published">1932-01-01</field>
+        </record>
+        <record id="library_book_1985" model="library.book">
+            <field name="name">1985</field>
+            <field name="date_published">2017-05-21</field>
+            <field name="isbn">456-789546-879</field>
+        </record>
+    </data>
+    <!-- data updated on installation and module update -->
+    <data noupdate="0">
+        <record id="library_book_bambi" model="library.book">
+            <field name="name">Bambi Book Example</field>
+            <field name="date_published">2018-12-01</field>
+            <field name="isbn">4564-7894-87</field>
+        </record>
+        <!-- using eval attribute to evaluate python expressions and asign the value to the field -->
+        <record id="library_book_eb" model="library.book">
+            <field name="name">English Book: From pino to Advance</field>
+            <field name="date_published" eval="(datetime.now() + timedelta(-1))"/>
+            <field name="isbn" eval="(4565465464645 * 2)"/>
+        </record>
+        <!-- using ref() to translate external identifier to the corresponding database id -->
+        <record id="library_book_ode" model="library.book">
+            <field name="name" eval="ref('res_partner_packt')"/>
+        </record>
+        <!-- using ref xml attribute to store the foreign key of the publisher id -->
+        <!-- Many2one relation -->
+        <record name="library_book_frozen" model="library.book">
+            <field name="name">Frozen Book</field>
+            <field name="date_published" eval="datetime.now() + timedelta(-1)"/>
+            <field name="isbn" eval="(46548979 + 1)"/>
+            <!-- evaluation a ref method -->
+<!--            <field name="publisher_id" eval="ref('res_partner_carlos')"/>-->
+            <!-- using the simple ref attribute form -->
+            <field name="publisher_id" ref="res_partner_carlos"/>
+        </record>
+        <!--
+            One2many relation
+            uses a special eval sintax which receives a list of triplets
+            which will differ in the action perform depending on the code
+            used as first element of the triplet tuple
+        -->
+        <record id="library_book_tcotge" model="library.books">
+            <field name="name">The chichek of the golden eggs</field>
+            <field name="date_published" eval="datetime.now() + timedelta(-1)"/>
+            <field name="isbn" eval="(56456432 - 5)"/>
+            <field name="publisher_id" ref="res_partner_carlos"/>
+            <!-- One2many relation using a list of triplets sintax in eval -->
+            <field name="author_ids"
+                eval="[(
+                        6, 0,
+                        [
+                        ref('res_partner_alexandre'),
+                        ref('res_partner_holger')
+                        ]
+                )]"
+            />
+        </record>
+        <!-- to append a linked record to the current list of authors -->
+        <record id="library_book_tcotge" model="library.books">
+            <field name="author_ids"
+                eval="[(
+                    4, ref('res_partner_carlos')
+                )]"
+            />
+        </record>
+        <!--
+            Other codes
+
+            0, _ , {'field': value}) creates a new record and links it to this one.
+            (1, id, {'field': value}) updates the values on an already linked record.
+            (2, id, _) removes the link to and deletes the id related record.
+            (3, id, _) removes the link to, but does not delete, the id related record. This
+            is usually what you will use to delete related records on many-to-many fields.
+            (4, id, _) links an already existing record. This can only be used for many-to-
+            many fields.
+            (5, _, _) removes all the links, without deleting the linked records.
+            (6, _, [ids]) replaces the list of linked records with the provided list.
+            The _ underscore symbol used in the preceding list represents irrelevant values, usually
+            filled with 0 or False.
+        -->
+
+        <!-- deleting records -->
+        <!-- deleting all records matching a search -->
+        <delete model="library.book" search="[('id','=',ref=('library_app.library_book_tcotge'))]"/>
+        <!-- deleting record using specific id -->
+        <delete model="library.book" id="library_app.library_book_tcotge"/>
+        <!--
+            it is also posible to execute arbitrary methods on xml file load,
+            often used to load demostration data
+
+            This calls the _init_data_user_note_stages method of the res.users Model, passing
+            no arguments. The argument list is provided by the eval attribute, which is an empty list
+            in this case.
+        -->
+        <function
+            model="res.users"
+            name="_init_data_user_note_stages"
+            eval="[]"
+        />
+    </data>
+</odoo>

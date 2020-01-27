@@ -1,19 +1,32 @@
 <?xml version="1.0"?>
 <odoo>
-<!--    &lt;!&ndash; Library App Menu &ndash;&gt;-->
-<!--    <menuitem id="menu_library"-->
-<!--        name="Library Managment"-->
-<!--    />-->
-<!--    &lt;!&ndash; Action to open the Book list &ndash;&gt;-->
-<!--    <act_window id="action_library_book"-->
-<!--        name="Library Books"-->
-<!--        res_model="library.book"-->
-<!--        view_mode="tree,form"-->
-<!--    />-->
-<!--    &lt;!&ndash; Menu item to open the Book list &ndash;&gt;-->
-<!--    <menuitem id="menu_library_book"-->
-<!--        name="Books"-->
-<!--        parent="menu_library"-->
-<!--        action="action_library_book"-->
-<!--    />-->
+    <!-- form view for library.checkout model -->
+    <record id="view_form_checkout" model="ir.ui.view">
+        <field name="name">Checkout Form</field>
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <form string="Checkout">
+                <sheet>
+                    <group>
+                        <field name="member_id"/>
+                        <field name="request_date"/>
+                        <field name="user_id"/>
+                        <field name="line_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- tree view for library.checkout model -->
+    <record id="tree_view_checkout" model="ir.ui.view">
+        <field name="name">Checkout Tree</field>
+        <field name="model">library.checkout</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="request_date"/>
+                <field name="member_id"/>
+            </tree>
+        </field>
+    </record>
 </odoo>

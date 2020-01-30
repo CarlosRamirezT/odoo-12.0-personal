@@ -5,7 +5,7 @@
         <field name="name">Checkout Form</field>
         <field name="model">library.checkout</field>
         <field name="arch" type="xml">
-            <form string="Checkout">
+            <form>
                 <sheet>
                     <group>
                         <field name="member_id"/>

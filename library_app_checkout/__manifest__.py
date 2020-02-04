@@ -9,6 +9,7 @@
         'views/library_menu.xml',
         'views/checkout_view.xml',
         'data/library_checkout_stage.xml',
+        'wizard/checkout_massmessage_wizard_view.xml',
     ],
     'application': False,
 }
